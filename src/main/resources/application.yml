@@ -1,0 +1,13 @@
+spring:
+  thymeleaf:
+    mode: HTML
+    cache: false
+  profiles:
+    active: pro
+  messages:
+    basename: i18n/messages
+
+
+
+comment.avatar: /images/dog.jpg
+

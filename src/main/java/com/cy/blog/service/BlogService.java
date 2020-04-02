@@ -1,0 +1,42 @@
+package com.cy.blog.service;
+
+import com.cy.blog.po.Blog;
+import com.cy.blog.vo.BlogQuery;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * User: 张文杰
+ * Date: 2020/3/9
+ * Time: 21:25
+ * blog接口
+ */
+public interface BlogService {
+
+    Blog getBlog(Long id);
+
+    Blog getAndConvent(Long id);
+
+    Page<Blog> listBlog(Pageable pageable, BlogQuery blogQuery);
+
+    Page<Blog> listBlog(Pageable pageable);
+
+    Page<Blog> listBlog(Long tagId, Pageable pageable);
+
+    Page<Blog> listBlog(String query, Pageable pageable);
+
+    List<Blog> listRecommendBlogTop(Integer size);
+
+    Map<String, List<Blog>> archiveBlog();
+
+    Long countBlog();
+
+    Blog saveBlog(Blog blog);
+
+    Blog updateBlog(Long id, Blog blog);
+
+    void deleteBlog(Long id);
+}
