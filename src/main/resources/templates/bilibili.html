@@ -6,6 +6,7 @@
     <title>博客管理</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
+    <link rel="stylesheet" href="../static/layui/css/layui.css"  media="all" th:href="@{/layui/css/layui.css}">
 </head>
 <body>
 
@@ -23,7 +24,11 @@
 
     <div class="ui container m-margin-top">
         <div class="ui success large message">
+            <form action="#" th:action="@{/bilibili/file}" method="post">
+                <input type="file" name="file"/>
+                <button type="button" onclick="btn()">提交</button>
 
+            </form>
         </div>
     </div>
 </div>
@@ -56,6 +61,10 @@
     $('.ui.dropdown').dropdown({
         on : 'hover'
     });
+
+    function btn() {
+        layer.msg("123");
+    }
 </script>
 </body>
 </html>
