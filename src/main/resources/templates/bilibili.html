@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="admin/_fragments :: head(~{::title})">
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>博客管理</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
-    <link rel="stylesheet" href="../static/css/me.css">
-    <link rel="stylesheet" href="../static/layui/css/layui.css"  media="all" th:href="@{/layui/css/layui.css}">
 </head>
 <body>
 
@@ -16,21 +13,113 @@
 
 <!--中间内容-->
 <div  class="m-container-small m-padded-tb-big">
+    <!--bilibili视频-->
     <div class="ui container">
         <div class="ui success large message">
-            <iframe src="//player.bilibili.com/player.html?aid=82168269&bvid=BV17J411L7Rr&cid=140588383&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+            <iframe src="//player.bilibili.com/player.html?aid=66407733&bvid=BV14441117As&cid=115173538&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
         </div>
     </div>
 
+    <!--文件上传-->
     <div class="ui container m-margin-top">
         <div class="ui success large message">
-            <form action="#" th:action="@{/bilibili/file}" method="post">
-                <input type="file" name="file"/>
-                <button type="button" onclick="btn()">提交</button>
+            <form action="#" method="post">
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn" id="upload">上传图片</button>
+                    <div class="layui-upload-list">
+                        <p id="demoText"></p>
+                    </div>
+                </div>
 
             </form>
+            <button type="button" onclick="upload()">保存</button>
         </div>
     </div>
+
+    <!--轮播-->
+    <div class="ui container m-margin-top">
+        <div class="ui success large message">
+
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                <legend>设定各种参数</legend>
+            </fieldset>
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">宽高</label>
+                        <div class="layui-input-inline" style="width: 98px;">
+                            <input type="tel" name="width" value="600" autocomplete="off" placeholder="width" class="layui-input demoSet">
+                        </div>
+                        <div class="layui-input-inline" style="width: 98px;">
+                            <input type="tel" name="height" value="280" autocomplete="off" placeholder="height" class="layui-input demoSet">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">动画类型</label>
+                    <div class="layui-input-block">
+                        <div class="layui-btn-group demoTest" style="margin-top: 5px;">
+                            <button class="layui-btn layui-btn-sm" style="background-color: #5FB878;" data-type="set" data-key="anim" data-value="default">左右切换</button>
+                            <button class="layui-btn layui-btn-sm" data-type="set" data-key="anim" data-value="updown">上下切换</button>
+                            <button class="layui-btn layui-btn-sm" data-type="set" data-key="anim" data-value="fade">渐隐渐显</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">箭头状态</label>
+                    <div class="layui-input-block">
+                        <div class="layui-btn-group demoTest" style="margin-top: 5px;">
+                            <button class="layui-btn layui-btn-sm" style="background-color: #5FB878;" data-type="set" data-key="arrow" data-value="hover">悬停显示</button>
+                            <button class="layui-btn layui-btn-sm" data-type="set" data-key="arrow" data-value="always">始终显示</button>
+                            <button class="layui-btn layui-btn-sm" data-type="set" data-key="arrow" data-value="none">不显示</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">指示器位置</label>
+                    <div class="layui-input-block">
+                        <div class="layui-btn-group demoTest" style="margin-top: 5px;">
+                            <button class="layui-btn layui-btn-sm" style="background-color: #5FB878;" data-key="indicator" data-type="set" data-value="inside">容器内部</button>
+                            <button class="layui-btn layui-btn-sm" data-type="set" data-key="indicator" data-value="outside">容器外部</button>
+                            <button class="layui-btn layui-btn-sm" data-type="set" data-key="indicator" data-value="none">不显示</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">自动切换</label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" name="switch" lay-skin="switch" checked="" lay-text="ON|OFF" lay-filter="autoplay">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label" style="width: auto;">时间间隔</label>
+                        <div class="layui-input-inline" style="width: 120px;">
+                            <input type="tel" name="interval" value="3000" autocomplete="off" placeholder="毫秒" class="layui-input demoSet">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-carousel" id="test3" lay-filter="test4">
+                <div carousel-item="">
+                    <div>条目1</div>
+                    <div>条目2</div>
+                    <div>条目3</div>
+                    <div>条目4</div>
+                    <div>条目5</div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
 </div>
 
 <br>
@@ -52,6 +141,8 @@
 <!--JS引入-->
 <th:block th:replace="_fragments :: script">
 </th:block>
+<script src="../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+
 
 <script>
     $('.menu.toggle').click(function () {
@@ -62,9 +153,104 @@
         on : 'hover'
     });
 
-    function btn() {
-        layer.msg("123");
+    function upload() {
+        var file = $('#file').attr('src');
+        $.ajax({
+           url: "/bilibili/file",
+            method: "POST",
+            async: true,
+            data:{
+               "img": file
+            },
+            success(res) {
+               console.log(res);
+               layer.msg("123");
+            },
+            error(res) {
+               console.log(res);
+            }
+        });
     }
+
+
+    layui.use('upload', function(){
+        var $ = layui.jquery,
+            upload = layui.upload;
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#upload',
+            url: 'https://httpbin.org/post', //改成您自己的上传接口
+            size: 10240,
+            before: function(obj){
+                console.log(obj);
+                const uploadList = $('.layui-upload-list');
+                uploadList.html('<img class="layui-upload-img" id="file" name="file" style="width: 200px; height: 200px;">');
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#file').attr('src', result); //图片链接（base64）
+                });
+            },
+            done: function(res){
+                console.log(res);
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            },
+            error: function(){
+                layer.msg("重传456");
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+    });
+
+
+
+    layui.use(['carousel', 'form'], function(){
+        var carousel = layui.carousel
+            ,form = layui.form;
+
+        //设定各种参数
+        var ins3 = carousel.render({
+            elem: '#test3'
+        });
+
+        var $ = layui.$, active = {
+            set: function(othis){
+                var THIS = 'layui-bg-normal'
+                    ,key = othis.data('key')
+                    ,options = {};
+
+                othis.css('background-color', '#5FB878').siblings().removeAttr('style');
+                options[key] = othis.data('value');
+                ins3.reload(options);
+            }
+        };
+
+        //监听开关
+        form.on('switch(autoplay)', function(){
+            ins3.reload({
+                autoplay: this.checked
+            });
+        });
+
+        $('.demoSet').on('keyup', function(){
+            var value = this.value
+                ,options = {};
+            if(!/^\d+$/.test(value)) return;
+
+            options[this.name] = value;
+            ins3.reload(options);
+        });
+
+    });
 </script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.cy.blog.vo;
 
+import java.util.Map;
+
 /**
  * User: 张文杰
  * Date: 2020/4/4
@@ -18,6 +20,10 @@ public class AjaxJson {
         this.status = status;
         this.msg = msg;
         this.data = data;
+    }
+
+    public static AjaxJson fromObject(Map<String, Object> map) {
+        return null;
     }
 
     public Integer getStatus() {

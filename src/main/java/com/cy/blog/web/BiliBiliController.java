@@ -1,10 +1,13 @@
 package com.cy.blog.web;
 
+import com.cy.blog.util.UploadUtil;
 import com.cy.blog.vo.AjaxJson;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.File;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * User: 张文杰
@@ -20,9 +23,10 @@ public class BiliBiliController {
     }
 
     @RequestMapping("/bilibili/file")
-    public AjaxJson imgUp(File file) {
+    @ResponseBody
+    public AjaxJson imgUp(String img, HttpServletRequest request, HttpServletResponse response) {
         AjaxJson aj = new AjaxJson();
-        System.out.println(file.toString());
+        aj = UploadUtil.saveToImgByStr(img);
         return aj;
     }
 }

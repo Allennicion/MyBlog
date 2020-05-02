@@ -7,6 +7,8 @@ import com.cy.blog.service.BlogService;
 import com.cy.blog.service.TagService;
 import com.cy.blog.service.TypesService;
 import com.cy.blog.util.CommonUtils;
+import com.cy.blog.util.UploadUtil;
+import com.cy.blog.vo.AjaxJson;
 import com.cy.blog.vo.BlogQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -87,6 +89,10 @@ public class BlogController {
         if(blog.getTagIds() != null) {
             String ids = checkTag(blog.getTagIds());
             blog.setTags(tagService.listTag(ids));
+        }
+        if(blog.getFirstPic() != null) {
+            AjaxJson aj = UploadUtil.saveToImgByStr(blog.getFirstPic());
+            blog.setFirstPic(String.valueOf(aj.getData()));
         }
         Blog b = null;
         if(blog.getId()!=null) {

@@ -1,10 +1,12 @@
 package com.cy.blog.handler;
 
+import com.cy.blog.vo.AjaxJson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,7 +24,9 @@ public class ControllerExceptrionHandler {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @ExceptionHandler(Exception.class)
-    public ModelAndView execptionHandler(HttpServletRequest request, Exception e) throws Exception {
+    @ResponseBody
+    public AjaxJson execptionHandler(HttpServletRequest request, Exception e) throws Exception {
+        AjaxJson aj = new AjaxJson();
         logger.error("Request URL : {}, Exception : {}", request.getRequestURL(),e);
         /*这里进行判断,是否是自己定义的异常处理,如果是则这里不做拦截处理*/
         if(AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null){
@@ -33,6 +37,7 @@ public class ControllerExceptrionHandler {
         mv.addObject("url",request.getRequestURL());
         mv.addObject("exception",e);
         mv.setViewName("error/error");
-        return mv;
+        aj.setStatus(201);
+        return aj;
     }
 }
