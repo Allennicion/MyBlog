@@ -90,7 +90,7 @@ public class BlogController {
             String ids = checkTag(blog.getTagIds());
             blog.setTags(tagService.listTag(ids));
         }
-        if(blog.getFirstPic() != null) {
+        if(blog.getFirstPic() != null&& "0".equals(blog.getOldPic())) {
             AjaxJson aj = UploadUtil.saveToImgByStr(blog.getFirstPic());
             blog.setFirstPic(String.valueOf(aj.getData()));
         }

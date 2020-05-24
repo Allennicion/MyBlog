@@ -48,7 +48,7 @@ public class UploadUtil {
                 //String uploadPath = request.getSession().getServletContext().getRealPath("/");
 
                 //保存文件的路径
-                String filepath = "/images/" + createNewDir();
+                String filepath = "/images/upload/" + createNewDir();
                 File destfile = new File(uploadPath + filepath);
                 if (!destfile.exists()) {
                     destfile.mkdirs();

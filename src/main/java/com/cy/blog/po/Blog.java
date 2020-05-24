@@ -49,6 +49,8 @@ public class Blog {
 
     @Transient  //该字段不会入库
     private String tagIds;
+    @Transient
+    private String oldPic;
 
     public Blog() {
     }
@@ -206,6 +208,14 @@ public class Blog {
     }
     public void init() {
         this.tagIds= tagsToIds(this.getTags());
+    }
+
+    public String getOldPic() {
+        return oldPic;
+    }
+
+    public void setOldPic(String oldPic) {
+        this.oldPic = oldPic;
     }
 
     public String tagsToIds(List<Tag> tags) {
