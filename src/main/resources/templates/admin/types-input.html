@@ -10,64 +10,36 @@
 </head>
 <body>
 
-  <!--导航-->
-  <nav th:replace="admin/_fragments :: menu(2)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
-  </nav>
-  <div class="ui attached pointing menu">
-    <div class="ui container">
-      <div class="right menu">
-        <a href="#" th:href="@{/admin/types}" class="item">列表</a>
-        <a href="#" th:href="@{/admin/types/input}" class="teal item active">新增</a>
-      </div>
-    </div>
-  </div>
 
   <!--中间内容-->
   <div  class="m-container-small m-padded-tb-big">
     <div class="ui container">
       <form action="#" method="post" th:action="*{id} == null ? @{/admin/inputTypes} : @{/admin/inputTypes/{id}(id=*{id})}" th:object="${type}" class="ui form">
-        <input type="hidden" name="id" th:value="*{id}">
+        <input type="hidden" id="id" name="id" th:value="*{id}">
         <div class="required field">
           <div class="ui left labeled input">
             <label class="ui teal basic label">名称</label>
-            <input type="text" name="name" placeholder="分类名称" autocomplete="off" th:value="*{name}">
+            <input type="text" id="name" name="name" placeholder="分类名称" autocomplete="off">
           </div>
 
         </div>
 
-        <div class="ui error message"></div>
-        <div class="ui negative message" th:if="${#fields.hasErrors('name')}">
-          <i class="close icon"></i>
-          <div class="header">提交失败</div>
-          <p th:errors="*{name}"></p>
-        </div>
         <div class="ui right aligned container">
-          <button type="button" class="ui button" onclick="window.location.href='/admin/types'" >返回</button>
-          <button class="ui teal submit button">提交</button>
+          <!--<button type="button" class="ui button" onclick="window.location.href='/admin/types'" >返回</button>-->
+          <button type="button" class="ui button" onclick="back();" >返回</button>
+          <button type="button" class="ui teal button" onclick="add();">提交</button>
         </div>
 
       </form>
     </div>
   </div>
 
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-
-  <!--底部footer-->
-  <footer th:replace="admin/_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
-  </footer>
-
   <!--JS引入-->
   <th:block th:replace="_fragments :: script">
   </th:block>
 
   <script>
+    const index = parent.layer.getFrameIndex(window.name);
 
     $('.menu.toggle').click(function () {
       $('.m-item').toggleClass('m-mobile-hide');
@@ -93,6 +65,49 @@
         $(this).closest('.message')
             .transition('fade');
     });
+
+    function back() {
+      parent.layer.close(index);
+    }
+
+    function add() {
+      const typeId = $("#id").val();
+      const name = $("#name").val();
+
+      if(name == null || name == "") {
+        layer.msg("分类名称不能为空!",{icon: 2, time: 1000});
+        $("#name").focus();
+        return;
+      }
+      let url = "";
+      if(typeId != null && typeId != "") {
+        url = "/admin/inputTypes/{id}(id="+typeId+")";
+      }else{
+        url = "/admin/inputTypes";
+      }
+
+      $.ajax({
+        type : "POST", //提交方式
+        url : url,//路径
+        data : {
+          id : typeId,
+          name : name
+        },
+        success : function(rs) {//返回数据根据结果进行相应的处理
+          if (rs.status == 200) {
+            layer.msg(rs.msg,{icon: 1, time: 1000, end: function () {
+                parent.layer.close(index);
+              }});
+          } else {
+            layer.msg(rs.msg,{icon: 2, time: 1000});
+          }
+        },
+        error : function(rs) {
+          layer.msg('系统错误!',{icon: 2, time: 1000});
+        }
+      });
+
+    }
   </script>
 </body>
 </html>

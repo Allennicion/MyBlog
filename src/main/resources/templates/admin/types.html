@@ -54,7 +54,8 @@
                 <a th:href="@{/admin/types(page=${page.number}-1)}" class=" item" th:unless="${page.first}">上一页</a>
                 <a th:href="@{/admin/types(page=${page.number}+1)}" class=" item" th:unless="${page.last}">下一页</a>
               </div>
-              <a href="#" th:href="@{/admin/types/input}" class="ui mini right floated teal basic button">新增</a>
+              <!--<a href="#" th:href="@{/admin/types/input}" class="ui mini right floated teal basic button">新增</a>-->
+              <div onclick="addTypes();" class="ui mini right floated teal basic button">新增</div>
             </th>
           </tr>
         </tfoot>
@@ -84,6 +85,21 @@
         $(this).closest('.message')
                .transition('fade');
     });
+
+    function addTypes() {
+      layer.open({
+        type: 2,
+        title: '新增分类',
+        shadeClose: true,
+        shade: 0.8,
+        area: ['600px', '25%'],
+        content: '/admin/types/input/', //iframe的url
+        end: function () {
+          window.location.reload();
+        }
+      });
+      //layer.msg('测试',{icon: 1, time: 1000});
+    }
   </script>
 </body>
 </html>

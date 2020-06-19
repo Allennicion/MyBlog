@@ -18,5 +18,5 @@ logging:
     com.cy.blog: debug
     org.hibernate.type.descriptor.sql.BasicBinder: trace
   file: log/blog-dev.log
-
-
+server:
+  port: 8080
