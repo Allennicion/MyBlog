@@ -30,7 +30,7 @@ public class LoginController {
 
     @GetMapping
     public String loginPage(Model model, HttpServletRequest request) {
-        model.addAttribute("img","");
+        model.addAttribute("img", "");
         HttpSession session1 = request.getSession();
         Object user1 = session1.getAttribute("user");
         if (!StringUtils.isEmpty(user1)) {
@@ -45,16 +45,16 @@ public class LoginController {
         User user = userService.checkUser(username, password);
         if (user != null) {
             user.setPassword(null);
-            session.setAttribute("user",user);
+            session.setAttribute("user", user);
             return "admin/index";
-        }else{
-            attributes.addFlashAttribute("message","用户名或密码错误!");
+        } else {
+            attributes.addFlashAttribute("message", "用户名或密码错误!");
             return "redirect:/admin";
         }
     }
 
     @GetMapping("/loginout")
-    public String loginout(HttpSession session){
+    public String loginout(HttpSession session) {
         session.removeAttribute("user");
         return "redirect:/admin";
     }

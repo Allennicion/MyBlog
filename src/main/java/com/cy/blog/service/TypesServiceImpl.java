@@ -21,7 +21,7 @@ import java.util.List;
  * 新增类型实现类
  */
 @Service
-public class TypesServiceImpl implements TypesService{
+public class TypesServiceImpl implements TypesService {
 
     @Autowired
     private TypesRepository typesRepository;
@@ -54,8 +54,8 @@ public class TypesServiceImpl implements TypesService{
 
     @Override
     public List<Type> listTypeTop(Integer size) {
-        Sort sort = new Sort(Sort.Direction.DESC,"blogs.size");
-        Pageable pageable = new PageRequest(0,size,sort);
+        Sort sort = new Sort(Sort.Direction.DESC, "blogs.size");
+        Pageable pageable = new PageRequest(0, size, sort);
         return typesRepository.findTop(pageable);
     }
 
@@ -63,8 +63,8 @@ public class TypesServiceImpl implements TypesService{
     @Override
     public Type updateType(Long id, Type type) {
         Type t = typesRepository.findOne(id);
-        if(t == null) throw new NotFoundException("不存在该类型");
-        BeanUtils.copyProperties(type,t);
+        if (t == null) throw new NotFoundException("不存在该类型");
+        BeanUtils.copyProperties(type, t);
         return typesRepository.save(t);
     }
 

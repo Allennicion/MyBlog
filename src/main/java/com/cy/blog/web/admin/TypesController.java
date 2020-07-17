@@ -30,7 +30,7 @@ public class TypesController {
 
     @GetMapping("/types")
     public String types(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC)
-                                    Pageable pageable, Model model) {
+                                Pageable pageable, Model model) {
         Page<Type> page = typesService.listType(pageable);
         model.addAttribute("page", page);
         return "admin/types";
@@ -52,15 +52,15 @@ public class TypesController {
     @ResponseBody
     public AjaxJson inputTypes(@Valid Type type) {
         Type t = typesService.getTypeByName(type.getName());
-        if (t != null){
+        if (t != null) {
             return AjaxJson.fail("类型名称不能重复");
         }
 
         t = typesService.saveType(type);
-        if(t == null) {
+        if (t == null) {
             return AjaxJson.fail("操作失败");
-        }else {
-            return AjaxJson.success("操作成功","");
+        } else {
+            return AjaxJson.success("操作成功", "");
         }
     }
 
@@ -68,21 +68,21 @@ public class TypesController {
     @ResponseBody
     public AjaxJson inputTypes(@Valid Type type, @PathVariable Long id) {
         Type t = typesService.getTypeByName(type.getName());
-        if (t != null){
+        if (t != null) {
             return AjaxJson.fail("类型名称不能重复");
         }
-        t = typesService.updateType(id,type);
-        if(t == null) {
+        t = typesService.updateType(id, type);
+        if (t == null) {
             return AjaxJson.fail("更新失败");
-        }else {
-            return AjaxJson.success("操作成功","");
+        } else {
+            return AjaxJson.success("操作成功", "");
         }
     }
 
     @RequestMapping("/types/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         typesService.deleteType(id);
-        redirectAttributes.addFlashAttribute("message","删除成功");
+        redirectAttributes.addFlashAttribute("message", "删除成功");
         return "redirect:/admin/types";
     }
 }

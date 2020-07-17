@@ -13,9 +13,10 @@ import java.util.List;
  * Time: 21:12
  * 新增类型Dao
  */
-public interface TypesRepository extends JpaRepository<Type,Long> {
+public interface TypesRepository extends JpaRepository<Type, Long> {
     /**
      * 通过类型名称获取
+     *
      * @param name
      * @return
      */

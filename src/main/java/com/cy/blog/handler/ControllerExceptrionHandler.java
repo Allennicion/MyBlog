@@ -27,15 +27,15 @@ public class ControllerExceptrionHandler {
     @ResponseBody
     public AjaxJson execptionHandler(HttpServletRequest request, Exception e) throws Exception {
         AjaxJson aj = new AjaxJson();
-        logger.error("Request URL : {}, Exception : {}", request.getRequestURL(),e);
+        logger.error("Request URL : {}, Exception : {}", request.getRequestURL(), e);
         /*这里进行判断,是否是自己定义的异常处理,如果是则这里不做拦截处理*/
-        if(AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null){
+        if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null) {
             /*将异常抛出让springboot进行处理*/
             throw e;
         }
         ModelAndView mv = new ModelAndView();
-        mv.addObject("url",request.getRequestURL());
-        mv.addObject("exception",e);
+        mv.addObject("url", request.getRequestURL());
+        mv.addObject("exception", e);
         mv.setViewName("error/error");
         aj.setStatus(201);
         return aj;

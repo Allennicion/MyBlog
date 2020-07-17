@@ -11,7 +11,7 @@ import java.util.List;
  * 标签
  */
 @Entity //jpa 标识实体类
-@Table(name  = "t_tag") //映射数据库
+@Table(name = "t_tag") //映射数据库
 public class Tag {
     @Id
     @GeneratedValue

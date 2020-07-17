@@ -19,8 +19,7 @@ public class UploadUtil {
     /**
      * 将接收的base64转换成图片保存
      *
-     * @param imgByte
-     *            base64数据
+     * @param imgByte base64数据
      * @return 成功返回图片保存路径，失败返回false
      */
     public static AjaxJson saveToImgByStr(String imgByte) {
@@ -28,10 +27,10 @@ public class UploadUtil {
         AjaxJson aj = new AjaxJson();
 
         String uploadPath = Global.UPLOADPATH;
-        imgByte=imgByte.replaceAll("data:image/jpeg;base64,","");
-        BASE64Decoder decoder =  new BASE64Decoder();
+        imgByte = imgByte.replaceAll("data:image/jpeg;base64,", "");
+        BASE64Decoder decoder = new BASE64Decoder();
         byte[] imageByte = null;
-        try{
+        try {
             imageByte = decoder.decodeBuffer(imgByte);
             for (int i = 0; i < imageByte.length; ++i) {
                 if (imageByte[i] < 0) {// 调整异常数据
@@ -42,7 +41,7 @@ public class UploadUtil {
             e.printStackTrace();
         }
 
-        if (imageByte.length>0) {
+        if (imageByte.length > 0) {
             try {
                 //获取文件上传的真实路径
                 //String uploadPath = request.getSession().getServletContext().getRealPath("/");
@@ -55,7 +54,7 @@ public class UploadUtil {
                 }
                 //文件新名称
                 String fileNameNew = getFileNameNew() + ".jpg";
-                aj.setData(filepath+"/"+fileNameNew);
+                aj.setData(filepath + "/" + fileNameNew);
                 File f = new File(destfile.getAbsoluteFile() + File.separator + fileNameNew);
                 // 将字符串转换成二进制，用于显示图片
                 // 将上面生成的图片格式字符串 imgStr，还原成图片显示
@@ -67,7 +66,7 @@ public class UploadUtil {
                 length = in.read(buf, 0, buf.length);
 
                 while (length != -1) {
-                    fos.write(buf,0,length);
+                    fos.write(buf, 0, length);
                     length = in.read(buf);
                 }
                 fos.flush();

@@ -12,7 +12,7 @@ import java.util.List;
  * 博客
  */
 @Entity //jpa 标识实体类
-@Table(name  = "t_blog") //映射数据库
+@Table(name = "t_blog") //映射数据库
 public class Blog {
 
     @Id
@@ -206,8 +206,9 @@ public class Blog {
     public void setDescription(String description) {
         this.description = description;
     }
+
     public void init() {
-        this.tagIds= tagsToIds(this.getTags());
+        this.tagIds = tagsToIds(this.getTags());
     }
 
     public String getOldPic() {
@@ -219,11 +220,11 @@ public class Blog {
     }
 
     public String tagsToIds(List<Tag> tags) {
-        if(!tags.isEmpty()) {
+        if (!tags.isEmpty()) {
             StringBuffer ids = new StringBuffer();
             Boolean flag = false;
-            for (Tag tag: tags) {
-                if(flag){
+            for (Tag tag : tags) {
+                if (flag) {
                     ids.append(",");
                 } else {
                     flag = true;

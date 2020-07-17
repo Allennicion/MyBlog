@@ -18,13 +18,14 @@ import java.util.List;
  * Time: 22:21
  */
 @Service
-public class CommentServiceImpl implements CommentService{
+public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private CommentRepository commentRepository;
 
     /**
      * 查找评论数据
+     *
      * @param blogId
      * @return
      */
@@ -37,6 +38,7 @@ public class CommentServiceImpl implements CommentService{
 
     /**
      * 评论保存
+     *
      * @param comment
      * @return
      */
@@ -44,7 +46,7 @@ public class CommentServiceImpl implements CommentService{
     @Override
     public Comment saveComment(Comment comment) {
         Long parentCommentId = comment.getParentComment().getId();
-        if(parentCommentId != -1) {
+        if (parentCommentId != -1) {
             comment.setParentComment(commentRepository.findOne(parentCommentId));
         } else {
             comment.setParentComment(null);
@@ -55,6 +57,7 @@ public class CommentServiceImpl implements CommentService{
 
     /**
      * 循环每个顶级的评论节点
+     *
      * @param comments
      * @return
      */
@@ -74,6 +77,7 @@ public class CommentServiceImpl implements CommentService{
 
     /**
      * 合并子评论节点
+     *
      * @param comments
      */
     private void combineChildren(List<Comment> comments) {
@@ -92,15 +96,16 @@ public class CommentServiceImpl implements CommentService{
 
     /**
      * 递归迭代找出子代
-      * @param comment
+     *
+     * @param comment
      */
     private void recursively(Comment comment) {
         tempReplys.add(comment);//顶节点存放到临时存放集合
-        if(comment.getReplyComments().size() > 0) {
+        if (comment.getReplyComments().size() > 0) {
             List<Comment> relpys = comment.getReplyComments();
             for (Comment reply : relpys) {
                 tempReplys.add(reply);
-                if(reply.getReplyComments().size() > 0) {
+                if (reply.getReplyComments().size() > 0) {
                     recursively(reply);
                 }
             }

@@ -9,9 +9,9 @@ import java.util.Map;
  */
 public class AjaxJson {
 
-    private Integer status;	//定义状态码 200-成功 201-失败
+    private Integer status;    //定义状态码 200-成功 201-失败
     private String msg; //服务器返回客户端消息
-    private Object data;	//服务器返回客户端数据
+    private Object data;    //服务器返回客户端数据
 
     public AjaxJson() {
     }
@@ -53,15 +53,19 @@ public class AjaxJson {
     public static AjaxJson success() {
         return new AjaxJson(200, null, null);
     }
+
     public static AjaxJson success(Object object) {
         return new AjaxJson(200, null, object);
     }
-    public static AjaxJson success(String msg,Object object) {
+
+    public static AjaxJson success(String msg, Object object) {
         return new AjaxJson(200, msg, object);
     }
+
     public static AjaxJson fail() {
         return new AjaxJson(201, null, null);
     }
+
     public static AjaxJson fail(String msg) {
         return new AjaxJson(201, msg, null);
     }

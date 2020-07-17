@@ -19,4 +19,4 @@ logging:
     org.hibernate.type.descriptor.sql.BasicBinder: trace
   file: log/blog-dev.log
 server:
-  port: 8080
+  port: 8081

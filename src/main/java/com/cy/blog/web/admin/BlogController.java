@@ -51,13 +51,13 @@ public class BlogController {
     public String blogs(@PageableDefault(size = 10, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                         BlogQuery blogQuery, Model model) {
         model.addAttribute("types", typesService.listType());
-        model.addAttribute("page", blogService.listBlog(pageable,blogQuery));
+        model.addAttribute("page", blogService.listBlog(pageable, blogQuery));
         return LIST;
     }
 
     @PostMapping("/blogs/search")
     public String search(@PageableDefault(size = 10, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, BlogQuery blogQuery, Model model) {
-        model.addAttribute("page", blogService.listBlog(pageable,blogQuery));
+        model.addAttribute("page", blogService.listBlog(pageable, blogQuery));
         return "admin/blogs :: blogList";
     }
 
@@ -65,7 +65,7 @@ public class BlogController {
     public String input(Model model) {
         model.addAttribute("tags", tagService.listTag());
         model.addAttribute("types", typesService.listType());
-        model.addAttribute("blog",new Blog());
+        model.addAttribute("blog", new Blog());
         return INPUT;
     }
 
@@ -76,34 +76,34 @@ public class BlogController {
         model.addAttribute("types", typesService.listType());
         Blog blog = blogService.getBlog(id);
         blog.init();
-        model.addAttribute("blog",blog);
+        model.addAttribute("blog", blog);
         return INPUT;
     }
 
     @PostMapping("/blogs/post")
     public String post(Blog blog, HttpSession session, RedirectAttributes redirectAttributes) {
         blog.setUser((User) session.getAttribute("user"));
-        if(blog.getType()!=null) {
+        if (blog.getType() != null) {
             blog.setType(typesService.getType(blog.getType().getId()));
         }
-        if(blog.getTagIds() != null) {
+        if (blog.getTagIds() != null) {
             String ids = checkTag(blog.getTagIds());
             blog.setTags(tagService.listTag(ids));
         }
-        if(blog.getFirstPic() != null&& "0".equals(blog.getOldPic())) {
+        if (blog.getFirstPic() != null && "0".equals(blog.getOldPic())) {
             AjaxJson aj = UploadUtil.saveToImgByStr(blog.getFirstPic());
             blog.setFirstPic(String.valueOf(aj.getData()));
         }
         Blog b = null;
-        if(blog.getId()!=null) {
+        if (blog.getId() != null) {
             b = blogService.updateBlog(blog.getId(), blog);
-        }else {
+        } else {
             b = blogService.saveBlog(blog);
         }
-        if(b == null) {
-            redirectAttributes.addFlashAttribute("message","操作失败");
-        }else {
-            redirectAttributes.addFlashAttribute("message","操作成功");
+        if (b == null) {
+            redirectAttributes.addFlashAttribute("message", "操作失败");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "操作成功");
         }
         return REDIRECT_LIST;
     }
@@ -115,29 +115,29 @@ public class BlogController {
         for (String id : tags) {
             Tag t = new Tag();
             Boolean bool = CommonUtils.isNumeric(id);
-            if(bool) {
+            if (bool) {
                 Tag tag = tagService.getTag(Long.parseLong(id));
-                if(tag == null) {
+                if (tag == null) {
                     t.setName(id);
                     t = tagService.saveAndFlush(t);
-                    ids = t.getId()+"";
-                }else {
+                    ids = t.getId() + "";
+                } else {
                     ids = id;
                 }
-            }else {
+            } else {
                 t.setName(id);
                 t = tagService.saveAndFlush(t);
-                ids = t.getId()+"";
+                ids = t.getId() + "";
             }
-            sb.append(ids+",");
+            sb.append(ids + ",");
         }
-        return sb.toString().substring(0,sb.toString().length() -1);
+        return sb.toString().substring(0, sb.toString().length() - 1);
     }
 
     @GetMapping("/blogs/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         blogService.deleteBlog(id);
-        redirectAttributes.addFlashAttribute("message","删除成功");
+        redirectAttributes.addFlashAttribute("message", "删除成功");
         return REDIRECT_LIST;
     }
 }

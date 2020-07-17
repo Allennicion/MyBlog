@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * Description: 用户登陆业务实现层
  */
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;

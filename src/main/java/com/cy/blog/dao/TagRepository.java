@@ -13,7 +13,7 @@ import java.util.List;
  * Time: 21:03
  * 标签Dao
  */
-public interface TagRepository extends JpaRepository<Tag,Long> {
+public interface TagRepository extends JpaRepository<Tag, Long> {
 
     Tag findByName(String name);
 

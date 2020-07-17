@@ -13,7 +13,7 @@ import java.util.List;
  * 类型
  */
 @Entity //jpa 标识实体类
-@Table(name  = "t_type") //映射数据库
+@Table(name = "t_type") //映射数据库
 public class Type {
 
     @Id

@@ -1,129 +1,133 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="_fragments :: head(~{::title})">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>关于我</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
-  <link rel="stylesheet" href="../static/css/me.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
 </head>
 <body>
 
-  <!--导航开始-->
-  <nav th:replace="_fragments :: menu(5)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
-  </nav>
-  <!--导航结束-->
+<!--导航开始-->
+<nav th:replace="_fragments :: menu(5)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+</nav>
+<!--导航结束-->
 
-  <!--中间内容-->
-  <div  class="m-container m-padded-tb-big animated fadeIn">
+<!--中间内容-->
+<div class="m-container m-padded-tb-big animated fadeIn">
     <div class="ui container">
 
-      <div class="ui stackable grid">
-        <div class="eleven wide column">
-          <div class="ui segment">
-            <img src="../static/images/RyokanKasuga.jpg" th:src="@{/images/RyokanKasuga.jpg}" alt="" class="ui rounded image">
-          </div>
-        </div>
-        <div class="five wide column">
-          <div class="ui top attached segment">
-            <div class="ui header">关于我</div>
-          </div>
-          <div class="ui attached segment">
-            <p class="m-text">艾泽拉斯救世主、奥丁的勇士、精英干员、秃头的二次元爱好者...</p>
-            <p class="m-text">热爱魔兽,热爱编程,喜欢折腾,正在探索未知的未知领域...</p>
-          </div>
-          <div class="ui attached segment">
-            <div class="ui orange basic left pointing label">编程</div>
-            <div class="ui orange basic left pointing label">游戏</div>
-            <div class="ui orange basic left pointing label">动漫</div>
-            <div class="ui orange basic left pointing label">阅读</div>
-          </div>
-          <div class="ui attached segment">
-            <div class="ui teal basic left pointing label m-margin-tb-tiny">Java</div>
-            <div class="ui teal basic left pointing label m-margin-tb-tiny">JQuery</div>
-            <div class="ui teal basic left pointing label m-margin-tb-tiny">Vue</div>
-            <div class="ui teal basic left pointing label m-margin-tb-tiny">PHP</div>
-            <div class="ui teal basic left pointing label m-margin-tb-tiny">WoW</div>
-            <div class="ui teal basic left pointing label m-margin-tb-tiny">RainBowSix</div>
-            <div class="ui teal basic left pointing label m-margin-tb-tiny">...</div>
-          </div>
-          <div class="ui bottom attached segment">
-            <a href="#" class="ui github circular icon button" data-content="Allennicion" data-position="bottom center"><i class="github icon"></i></a>
-            <a href="#" class="ui wechat circular icon button"><i class="weixin icon"></i></a>
-            <a href="#" class="ui qq circular icon button" data-content="1349143710" data-position="bottom center"><i class="qq icon"></i></a>
-          </div>
+        <div class="ui stackable grid">
+            <div class="eleven wide column">
+                <div class="ui segment">
+                    <img src="../static/images/RyokanKasuga.jpg" th:src="@{/images/RyokanKasuga.jpg}" alt=""
+                         class="ui rounded image">
+                </div>
+            </div>
+            <div class="five wide column">
+                <div class="ui top attached segment">
+                    <div class="ui header">关于我</div>
+                </div>
+                <div class="ui attached segment">
+                    <p class="m-text">艾泽拉斯救世主、奥丁的勇士、精英干员、秃头的二次元爱好者...</p>
+                    <p class="m-text">热爱魔兽,热爱编程,喜欢折腾,正在探索未知的未知领域...</p>
+                </div>
+                <div class="ui attached segment">
+                    <div class="ui orange basic left pointing label">编程</div>
+                    <div class="ui orange basic left pointing label">游戏</div>
+                    <div class="ui orange basic left pointing label">动漫</div>
+                    <div class="ui orange basic left pointing label">阅读</div>
+                </div>
+                <div class="ui attached segment">
+                    <div class="ui teal basic left pointing label m-margin-tb-tiny">Java</div>
+                    <div class="ui teal basic left pointing label m-margin-tb-tiny">JQuery</div>
+                    <div class="ui teal basic left pointing label m-margin-tb-tiny">Vue</div>
+                    <div class="ui teal basic left pointing label m-margin-tb-tiny">PHP</div>
+                    <div class="ui teal basic left pointing label m-margin-tb-tiny">WoW</div>
+                    <div class="ui teal basic left pointing label m-margin-tb-tiny">RainBowSix</div>
+                    <div class="ui teal basic left pointing label m-margin-tb-tiny">...</div>
+                </div>
+                <div class="ui bottom attached segment">
+                    <a href="#" class="ui github circular icon button" data-content="Allennicion"
+                       data-position="bottom center"><i class="github icon"></i></a>
+                    <a href="#" class="ui wechat circular icon button"><i class="weixin icon"></i></a>
+                    <a href="#" class="ui qq circular icon button" data-content="1349143710"
+                       data-position="bottom center"><i class="qq icon"></i></a>
+                </div>
 
-          <div class="ui wechat-qr flowing popup transition hidden">
-            <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt="" class="ui rounded image" style="width: 110px">
-          </div>
-          </div>
-      </div>
+                <div class="ui wechat-qr flowing popup transition hidden">
+                    <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt=""
+                         class="ui rounded image" style="width: 110px">
+                </div>
+            </div>
+        </div>
 
     </div>
-  </div>
+</div>
 
-  <br>
-  <br>
-  <!--底部footer开始-->
-  <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
-  </footer>
-  <!--底部footer结束-->
+<br>
+<br>
+<!--底部footer开始-->
+<footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
+</footer>
+<!--底部footer结束-->
 
-  <!--JS引入-->
-  <th:block th:replace="_fragments :: script">
-  </th:block>
+<!--JS引入-->
+<th:block th:replace="_fragments :: script">
+</th:block>
 
-  <script>
+<script>
     $('.menu.toggle').click(function () {
-      $('.m-item').toggleClass('m-mobile-hide');
+        $('.m-item').toggleClass('m-mobile-hide');
     });
 
     $('.wechat').popup({
-      popup : $('.wechat-qr'),
-      position: 'bottom center'
+        popup: $('.wechat-qr'),
+        position: 'bottom center'
     });
     $('.qq').popup();
     $('.github').popup();
 
-    layui.use(['carousel', 'form'], function(){
-      var carousel = layui.carousel
-              ,form = layui.form;
+    layui.use(['carousel', 'form'], function () {
+        var carousel = layui.carousel
+            , form = layui.form;
 
-      //设定各种参数
-      var ins3 = carousel.render({
-        elem: '#test3'
-      });
-
-      var $ = layui.$, active = {
-        set: function(othis){
-          var THIS = 'layui-bg-normal'
-                  ,key = othis.data('key')
-                  ,options = {};
-
-          othis.css('background-color', '#5FB878').siblings().removeAttr('style');
-          options[key] = othis.data('value');
-          ins3.reload(options);
-        }
-      };
-
-      //监听开关
-      form.on('switch(autoplay)', function(){
-        ins3.reload({
-          autoplay: this.checked
+        //设定各种参数
+        var ins3 = carousel.render({
+            elem: '#test3'
         });
-      });
 
-      $('.demoSet').on('keyup', function(){
-        var value = this.value
-                ,options = {};
-        if(!/^\d+$/.test(value)) return;
+        var $ = layui.$, active = {
+            set: function (othis) {
+                var THIS = 'layui-bg-normal'
+                    , key = othis.data('key')
+                    , options = {};
 
-        options[this.name] = value;
-        ins3.reload(options);
-      });
+                othis.css('background-color', '#5FB878').siblings().removeAttr('style');
+                options[key] = othis.data('value');
+                ins3.reload(options);
+            }
+        };
+
+        //监听开关
+        form.on('switch(autoplay)', function () {
+            ins3.reload({
+                autoplay: this.checked
+            });
+        });
+
+        $('.demoSet').on('keyup', function () {
+            var value = this.value
+                , options = {};
+            if (!/^\d+$/.test(value)) return;
+
+            options[this.name] = value;
+            ins3.reload(options);
+        });
 
     });
 
-  </script>
+</script>
 </body>
 </html>

@@ -12,7 +12,7 @@ import java.util.List;
  * 评论
  */
 @Entity //jpa 标识实体类
-@Table(name  = "t_comment") //映射数据库
+@Table(name = "t_comment") //映射数据库
 public class Comment {
 
     @Id

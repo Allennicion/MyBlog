@@ -1,125 +1,135 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:fragment="head(title)">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title th:replace="${title}">博客详情</title>
-  <link href="../../static/images/favicon.ico"  th:href="@{/images/favicon.ico}" mce_href="favicon.ico" rel="shortcut icon" type="../../static/images/favicon.ico"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
-  <link rel="stylesheet" href="../../static/css/typo.css" th:href="@{/css/typo.css}">
-  <link rel="stylesheet" href="../../static/css/animate.css" th:href="@{/css/animate.css}">
-  <link rel="stylesheet" href="../../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
-  <link rel="stylesheet" href="../../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
-  <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
-  <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
-  <link rel="stylesheet" href="../../static/css/dropdown.css" th:href="@{/css/dropdown.css}">
-  <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}">
-  <script>
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">博客详情</title>
+    <link href="../../static/images/favicon.ico" th:href="@{/images/favicon.ico}" mce_href="favicon.ico"
+          rel="shortcut icon" type="../../static/images/favicon.ico"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../../static/css/animate.css" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
+    <link rel="stylesheet" href="../../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css"
+          th:href="@{/lib/editormd/css/editormd.min.css}">
+    <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
+    <link rel="stylesheet" href="../../static/css/dropdown.css" th:href="@{/css/dropdown.css}">
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+    <script>
+    </script>
 </head>
 
 <body>
 
 <!--导航-->
-<nav th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
-  <div class="ui container">
-    <div class="ui inverted secondary stackable menu">
-      <h2 class="ui teal header item">管理后台</h2>
-      <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="mini home icon"></i>博客</a>
-      <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i>分类</a>
-      <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="mini tags icon"></i>标签</a>
-      <div class="right m-item m-mobile-hide menu">
-        <div class="ui dropdown  item">
-          <div class="text">
-            <img class="ui avatar image" th:src="${session.user.avatar}">
-            <span th:text="${session.user.nickname}"></span>
-          </div>
-          <i class="dropdown icon"></i>
-          <div class="menu">
-            <a href="/admin/loginout" class="item">注销</a>
-          </div>
+<nav th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">管理后台</h2>
+            <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i
+                    class="mini home icon"></i>博客</a>
+            <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i
+                    class="mini idea icon"></i>分类</a>
+            <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide"
+               th:classappend="${n==3} ? 'active'"><i class="mini tags icon"></i>标签</a>
+            <div class="right m-item m-mobile-hide menu">
+                <div class="ui dropdown  item">
+                    <div class="text">
+                        <img class="ui avatar image" th:src="${session.user.avatar}">
+                        <span th:text="${session.user.nickname}"></span>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="/admin/loginout" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
-    <i class="sidebar icon"></i>
-  </a>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
 </nav>
 
 <!--底部footer-->
 <footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive">
-  <div class="ui center aligned container">
-    <div class="ui inverted divided stackable grid">
-      <div class="three wide column">
-        <div class="ui inverted link list">
-          <div class="item">
-            <img th:src="#{bottom.img}"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTkQ4hUrrH4zfGbdshhXfaOTWmKNsKhsPk3Zb6VJZ6-83GpNhlk" class="ui rounded image" alt="" style="width: 110px">
-          </div>
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img th:src="#{bottom.img}"
+                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTkQ4hUrrH4zfGbdshhXfaOTWmKNsKhsPk3Zb6VJZ6-83GpNhlk"
+                             class="ui rounded image" alt="" style="width: 110px">
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced ">最新博客</h4>
+                <div id="newBlog-container">
+                    <div class="ui inverted link list" th:fragment="newBlogsList">
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item m-text-thin"
+                           th:each="blog : ${newBlogs}" th:text="${blog.title}">用户故事（User Story）</a>
+                        <!--/*-->
+                        <a href="#" class="item m-text-thin">用户故事（User Story）</a>
+                        <a href="#" class="item m-text-thin">用户故事（User Story）</a>
+                        <!--*/-->
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced ">最新Flag</h4>
+                <div class="ui inverted link list">
+                    <a href="javascript:void(0)" class="item">成为B站6级大佬</a>
+                    <a href="javascript:void(0)" class="item">愿天堂没有BUG</a>
+                    <a href="javascript:void(0)" class="item">去日本看樱花</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced ">酒馆小调</h4>
+                <a href="https://www.bilibili.com/video/av41334655" target="_blank" class="m-text-a">
+                    <p class="m-text-thin m-text-spaced m-opacity-mini" title="【爱尔兰哨笛】魔兽世界酒馆小调Stonefire Form BiliBili">
+                        暴风城钟响
+                        全民戒备狮鹫飞翔
+                        铜须的战枪
+                        照明弹照亮前方
+                        月神的殿堂
+                        祭司虔诚的在祈祷
+                        埃索达笼罩圣光
+                        瓦里安手上
+                        长剑闪耀魔法光
+                        驰骋在沙场
+                        染红破碎残阳
+                        烈焰在燃烧
+                        奥术光辉照四方
+                        宁静抚平了创伤....
+                    </p>
+                </a>
+            </div>
         </div>
-      </div>
-      <div class="three wide column" >
-        <h4 class="ui inverted header m-text-thin m-text-spaced " >最新博客</h4>
-        <div id="newBlog-container">
-          <div class="ui inverted link list" th:fragment="newBlogsList">
-            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item m-text-thin" th:each="blog : ${newBlogs}" th:text="${blog.title}">用户故事（User Story）</a>
-            <!--/*-->
-            <a href="#" class="item m-text-thin">用户故事（User Story）</a>
-            <a href="#" class="item m-text-thin">用户故事（User Story）</a>
-            <!--*/-->
-          </div>
-        </div>
-      </div>
-      <div class="three wide column">
-        <h4 class="ui inverted header m-text-thin m-text-spaced ">最新Flag</h4>
-        <div class="ui inverted link list">
-          <a href="javascript:void(0)" class="item">成为B站6级大佬</a>
-          <a href="javascript:void(0)" class="item">愿天堂没有BUG</a>
-          <a href="javascript:void(0)" class="item">去日本看樱花</a>
-        </div>
-      </div>
-      <div class="seven wide column">
-        <h4 class="ui inverted header m-text-thin m-text-spaced ">酒馆小调</h4>
-        <a href="https://www.bilibili.com/video/av41334655" target="_blank" class="m-text-a">
-          <p class="m-text-thin m-text-spaced m-opacity-mini" title="【爱尔兰哨笛】魔兽世界酒馆小调Stonefire Form BiliBili">
-            暴风城钟响
-            全民戒备狮鹫飞翔
-            铜须的战枪
-            照明弹照亮前方
-            月神的殿堂
-            祭司虔诚的在祈祷
-            埃索达笼罩圣光
-            瓦里安手上
-            长剑闪耀魔法光
-            驰骋在沙场
-            染红破碎残阳
-            烈焰在燃烧
-            奥术光辉照四方
-            宁静抚平了创伤....
-          </p>
-        </a>
-      </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2020 - <span
+                th:text="${#dates.year(#dates.createNow())}">2017</span> Designed by Allennicion</p>
     </div>
-    <div class="ui inverted section divider"></div>
-    <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2020 - <span th:text="${#dates.year(#dates.createNow())}">2017</span> Designed by Allennicion</p>
-  </div>
 
 </footer>
 
 <th:block th:fragment="script">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
-  <script src="../../static/js/semantic.js" th:src="@{/js/semantic.js}"></script>
-  <script src="../../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
-  <script src="../../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
-  <script src="../../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
-  <script src="../../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
-  <script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
-  <script src="../../static/js/dropdown.js" th:src="@{/js/dropdown.js}"></script>
-  <script src="../../static/lib/layer/layer.js" th:src="@{/lib/layer/layer.js}"></script>
-  <script>
-      $('#newBlog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newBlogs");
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+    <script src="../../static/js/semantic.js" th:src="@{/js/semantic.js}"></script>
+    <script src="../../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
+    <script src="../../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script src="../../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+    <script src="../../static/lib/waypoints/jquery.waypoints.min.js"
+            th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+    <script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+    <script src="../../static/js/dropdown.js" th:src="@{/js/dropdown.js}"></script>
+    <script src="../../static/lib/layer/layer.js" th:src="@{/lib/layer/layer.js}"></script>
+    <script>
+        $('#newBlog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newBlogs");
+    </script>
 </th:block>
 
 </body>

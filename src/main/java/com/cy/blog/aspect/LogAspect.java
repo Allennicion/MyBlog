@@ -27,33 +27,34 @@ public class LogAspect {
 
     /*定义切入点 注解中的参数表示拦截具体包下面的所有方法*/
     @Pointcut("execution(* com.cy.blog.web.*.*(..))")
-    public void log(){}
+    public void log() {
+    }
 
     @Before("log()")
-    public void doBefore(JoinPoint joinPoint){
+    public void doBefore(JoinPoint joinPoint) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         String url = request.getRequestURL().toString();
         String ip = request.getRemoteAddr();
         //这里得到类名+方法名
-        String classMethod = joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName();
-        Object[] args= joinPoint.getArgs();
+        String classMethod = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
+        Object[] args = joinPoint.getArgs();
         RequestLog requestLog = new RequestLog(url, ip, classMethod, args);
         logger.info("Request : {}", requestLog);
     }
 
     @After("log()")
-    public void doAfter(){
+    public void doAfter() {
 
     }
 
     /*这里是捕获到方法结束后返回的内容*/
     @AfterReturning(returning = "result", pointcut = "log()")
-    public void doAfterReturn(Object result){
+    public void doAfterReturn(Object result) {
         logger.info("Result : {}", result);
     }
 
-    private class RequestLog{
+    private class RequestLog {
         private String url;
         private String ip;
         private String classMethod;
